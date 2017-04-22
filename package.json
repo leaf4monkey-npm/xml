@@ -1,0 +1,34 @@
+{
+  "name": "leaf4monkey-xml",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/leaf4monkey-npm/xml.git"
+  },
+  "keywords": [
+    "xml",
+    "jsobject"
+  ],
+  "author": "leaf4monkey <joc98@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leaf4monkey-npm/xml/issues"
+  },
+  "homepage": "https://github.com/leaf4monkey-npm/xml#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "meteor-random": "0.0.3",
+    "mocha": "^3.2.0"
+  }
+}

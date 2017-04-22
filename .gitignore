@@ -1,0 +1,9 @@
+node_modules/
+.svn/
+.npm/
+.idea/
+packages/*/.npm/
+*.bat
+npm-debug.log
+Dockerfile
+.meteor/.finished-upgraders
