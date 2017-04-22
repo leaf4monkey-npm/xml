@@ -3,6 +3,8 @@
  * @fileoverview 请填写简要的文件说明.
  * @author joc (Chen Wen)
  */
+'use strict';
+
 const xml2js = require('xml2js')
 const _ = require('lodash');
 
@@ -17,16 +19,22 @@ let builders = {};
  * @param {Object} configs.xmldec - 默认值为 `{lang: 'zh-CN'}`
  * @returns {Function}
  */
-let getBuilder = (configs = {}) => {
+let getBuilder = function (configs) {
+    configs = configs || {};
     configs = _.assignIn({
         headless: true,
         xmldec: {lang: 'zh-CN'}
     }, configs);
     let _configs = {};
-    _.keys(configs).sort().forEach(key => _configs[key] = configs[key]);
+    _.keys(configs).sort().forEach(function (key) {
+        _configs[key] = configs[key];
+    });
     let key = JSON.stringify(_configs);
     let builder = builders[key] = builders[key] || new xml2js.Builder(configs);
-    return (obj, ...args) => builder.buildObject(obj, ...args);
+
+    return function () {
+        return builder.buildObject.apply(builder, arguments);
+    };
 };
 
 /**
@@ -36,9 +44,11 @@ let getBuilder = (configs = {}) => {
  * @param {?Object=} configs
  * @returns {Function}
  */
-let getParser = (configs) => {
+let getParser = function (configs) {
     let parser = new xml2js.Parser(configs);
-    return (xml, ...args) => parser.parseString(xml, ...args);
+    return function () {
+        return parser.parseString.apply(parser, arguments);
+    };
 };
 
 /**
@@ -47,6 +57,8 @@ let getParser = (configs) => {
  * @param {String} xml - 需要解析的 xml 文本
  * @param {Object[]} args - `xml2js.parseString()` 序号大于等于 2 的剩余参数列表
  */
-let fromXML = (xml, ...args) => xml2js.parseString(xml, ...args);
+let fromXML = function () {
+    return xml2js.parseString.apply(xml2js, arguments);
+};
 
 module.exports = {getBuilder, getParser, fromXML};

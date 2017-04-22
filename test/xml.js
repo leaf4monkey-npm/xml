@@ -3,7 +3,6 @@
  * @fileoverview 请填写简要的文件说明.
  * @author joc (Chen Wen)
  */
-require('babel-core/register');
 const assert = require('chai').assert;
 const Random = require('meteor-random');
 const xml = require('../');
@@ -13,8 +12,8 @@ describe('xml', function () {
     let obj = {
         Request: {
             $: {
-                service: "OrderReverseService",
-                lang: "zh-CN"
+                service: 'OrderReverseService',
+                lang: 'zh-CN'
             },
             Head: {_: '0285717018'},
             Body: [{
@@ -56,8 +55,8 @@ describe('xml', function () {
                 assert.deepEqual(res, {
                     Request: {
                         $: {
-                            service: "OrderReverseService",
-                            lang: "zh-CN"
+                            service: 'OrderReverseService',
+                            lang: 'zh-CN'
                         },
                         Head: ['0285717018'],
                         Body: [{
